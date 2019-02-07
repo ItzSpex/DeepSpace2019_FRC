@@ -31,12 +31,12 @@ public class Robot extends TimedRobot {
   {
     drivetrain = new TankDrivetrain(SubsystemComponents.Drivetrain.LeftMotors::set
             ,new InvertedConsumer(SubsystemComponents.Drivetrain.RightMotors::set));
-    drivetrain.setDefaultCommand(new DriveTank(drivetrain,oi::getForwardDriver, oi::getRotationDriver));
     hand = new BasicSubsystem(SubsystemComponents.Hand.Motors::set, new Limitless());
     Intake.UpMotor.setInverted(true);
     intake = new BasicSubsystem(SubsystemComponents.Intake.Motors::set, new Limitless());
     fork = new BasicSubsystem(SubsystemComponents.Fork.Motor::set, new Limitless());
     oi = new OI();
+    drivetrain.setDefaultCommand(new DriveTank(drivetrain,oi::getForwardDriver, oi::getRotationDriver));
 
   }
 

@@ -1,12 +1,15 @@
 
 
 package frc.robot;
+import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
+import com.spikes2212.genericsubsystems.basicSubsystem.utils.limitationFunctions.Limitless;
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import com.spikes2212.genericsubsystems.drivetrains.commands.DriveTank;
 import com.spikes2212.utils.InvertedConsumer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.SubsystemComponents.Intake;
 import frc.robot.commands.commandgroups.Auto;
 
 /**
@@ -18,13 +21,21 @@ import frc.robot.commands.commandgroups.Auto;
  */
 public class Robot extends TimedRobot {
   public static TankDrivetrain drivetrain;
+  public static BasicSubsystem hand;
+  public static BasicSubsystem intake;
+  public static BasicSubsystem fork;
   public static OI oi;
   Command autonomousCommand;
   @Override
-  public void robotInit() {
+  public void robotInit()
+  {
     drivetrain = new TankDrivetrain(SubsystemComponents.Drivetrain.LeftMotors::set
             ,new InvertedConsumer(SubsystemComponents.Drivetrain.RightMotors::set));
     drivetrain.setDefaultCommand(new DriveTank(drivetrain,oi::getForwardDriver, oi::getRotationDriver));
+    hand = new BasicSubsystem(SubsystemComponents.Hand.Motors::set, new Limitless());
+    Intake.UpMotor.setInverted(true);
+    intake = new BasicSubsystem(SubsystemComponents.Intake.Motors::set, new Limitless());
+    fork = new BasicSubsystem(SubsystemComponents.Fork.Motor::set, new Limitless());
     oi = new OI();
 
   }

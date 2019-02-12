@@ -28,4 +28,8 @@ public class RobotMap {
 
     }
 
+    public interface USB
+    {
+        public static final int PORT_0 = 0;
+    }
 }

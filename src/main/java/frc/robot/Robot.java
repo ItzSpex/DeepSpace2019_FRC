@@ -4,7 +4,7 @@ package frc.robot;
 import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
 import com.spikes2212.genericsubsystems.basicSubsystem.utils.limitationFunctions.Limitless;
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
-import com.spikes2212.genericsubsystems.drivetrains.commands.DriveTank;
+import com.spikes2212.genericsubsystems.drivetrains.commands.DriveArcade;
 import com.spikes2212.utils.CamerasHandler;
 import com.spikes2212.utils.InvertedConsumer;
 
@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
     intake = new BasicSubsystem(SubsystemComponents.Intake.Motors::set, new Limitless());
     fork = new BasicSubsystem(SubsystemComponents.Fork.Motor::set, new Limitless());
     oi = new OI();
-    drivetrain.setDefaultCommand(new DriveTank(drivetrain,oi::getForwardDriver, oi::getRotationDriver));
+    drivetrain.setDefaultCommand(new DriveArcade(drivetrain,oi::getForwardDriver, oi::getRotationDriver));
     camerashandler = new CamerasHandler(1280, 960, RobotMap.USB.CAMERA);
     camerashandler.setExposure(90);
 

@@ -7,6 +7,7 @@ import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import com.spikes2212.genericsubsystems.drivetrains.commands.DriveTank;
 import com.spikes2212.utils.CamerasHandler;
 import com.spikes2212.utils.InvertedConsumer;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -39,8 +40,9 @@ public class Robot extends TimedRobot {
     fork = new BasicSubsystem(SubsystemComponents.Fork.Motor::set, new Limitless());
     oi = new OI();
     drivetrain.setDefaultCommand(new DriveTank(drivetrain,oi::getForwardDriver, oi::getRotationDriver));
-    camerashandler = new CamerasHandler(1280, 960, RobotMap.USB.PORT_0);
+    camerashandler = new CamerasHandler(1280, 960, RobotMap.USB.CAMERA);
     camerashandler.setExposure(90);
+
   }
 
   @Override

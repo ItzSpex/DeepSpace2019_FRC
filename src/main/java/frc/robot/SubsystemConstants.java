@@ -3,8 +3,9 @@ package frc.robot;
 public class SubsystemConstants {
     public interface hand
     {
-        public static final double FORWARD = 0.5;
-        public static final double BACKWARD = -0.5;
+        public static final double FORWARD = 0.7;
+        public static final double BACKWARD = -0.7;
+        public static final double STALL = -0.4;
     }
     public interface intake
     {

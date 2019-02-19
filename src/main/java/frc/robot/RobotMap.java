@@ -26,14 +26,16 @@ public class RobotMap {
 
     public interface PWM
     {
-        public static final int DRIVE_RIGHT1 = 0;
-        public static final int DRIVE_RIGHT2 = 1;
-        public static final int DRIVE_LEFT1 = 2;
-        public static final int DRIVE_LEFT2 = 3;
+        ;
+        public static final int DRIVE_LEFT1 = 0;
+        public static final int DRIVE_LEFT2 = 1;
+        public static final int DRIVE_RIGHT1 = 2;
+        public static final int DRIVE_RIGHT2 = 3;
     }
 
     public interface USB
     {
-        public static final int CAMERA = 0;
+        public static final int FIRST_CAMERA = 0;
+        public static final int SECOND_CAMERA = 1;
     }
 }

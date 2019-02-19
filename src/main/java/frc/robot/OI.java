@@ -8,6 +8,7 @@
 package frc.robot;
 
 import com.spikes2212.genericsubsystems.basicSubsystem.commands.MoveBasicSubsystem;
+import com.spikes2212.utils.RunnableCommand;
 import com.spikes2212.utils.XboXUID;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -22,10 +23,13 @@ public class OI {
     private XboXUID operator = new XboXUID(1);
     Button HandFButton;
     Button HandBButton;
+    Button HandSButton;
     Button Intake;
     Button Outtake;
     Button ForkClose;
     Button ForkOpen;
+    Button switchToFirst;
+    Button switchToSecond;
     public OI()
     {
         operatorButtons();
@@ -35,8 +39,10 @@ public class OI {
     {
         HandFButton = operator.getGreenButton();
         HandBButton = operator.getRedButton();
+        HandSButton = operator.getBlueButton();
         HandFButton.whileHeld(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.FORWARD));
         HandBButton.whileHeld(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.BACKWARD));
+        HandSButton.toggleWhenPressed(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.STALL));
         Intake = operator.getRBButton();
         Intake.whileHeld(new MoveBasicSubsystem(Robot.intake, SubsystemConstants.intake.INTAKE));
         Outtake = operator.getLBButton();
@@ -48,6 +54,10 @@ public class OI {
         ForkOpen = driver.getRedButton();
         ForkClose.whileHeld(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.CLOSE_SPEED));
         ForkOpen.whileHeld(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.OPEN_SPEED));
+        switchToFirst = driver.getBlueButton();
+        switchToSecond = driver.getYellowButton();
+        switchToFirst.whenPressed(new RunnableCommand(()->Robot.camerashandler.switchCamera(RobotMap.USB.FIRST_CAMERA)));
+        switchToSecond.whenPressed(new RunnableCommand(()->Robot.camerashandler.switchCamera(RobotMap.USB.SECOND_CAMERA)));
     }
     public double getForwardDriver()
     {

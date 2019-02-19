@@ -27,8 +27,8 @@ public class Robot extends TimedRobot {
   public static BasicSubsystem intake;
   public static BasicSubsystem fork;
   public static OI oi;
+  public static CamerasHandler camerashandler;
   Command autonomousCommand;
-  CamerasHandler camerashandler;
   @Override
   public void robotInit()
   {
@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
     fork = new BasicSubsystem(SubsystemComponents.Fork.Motor::set, new Limitless());
     oi = new OI();
     drivetrain.setDefaultCommand(new DriveArcade(drivetrain,oi::getForwardDriver, oi::getRotationDriver));
-    camerashandler = new CamerasHandler(1280, 960, RobotMap.USB.CAMERA);
+    camerashandler = new CamerasHandler(1280, 960, RobotMap.USB.FIRST_CAMERA, RobotMap.USB.SECOND_CAMERA);
     camerashandler.setExposure(90);
 
   }

@@ -11,6 +11,7 @@ import com.spikes2212.utils.InvertedConsumer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.SubsystemComponents.Hand;
 import frc.robot.SubsystemComponents.Intake;
 import frc.robot.commands.commandgroups.Auto;
 
@@ -32,15 +33,16 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit()
   {
-    drivetrain = new TankDrivetrain(SubsystemComponents.Drivetrain.LeftMotors::set
-            ,new InvertedConsumer(SubsystemComponents.Drivetrain.RightMotors::set));
+    drivetrain = new TankDrivetrain(SubsystemComponents.Drivetrain.RightMotors::set
+            ,new InvertedConsumer(SubsystemComponents.Drivetrain.LeftMotors::set));
+    Hand.rightMotor.setInverted(true);
     hand = new BasicSubsystem(SubsystemComponents.Hand.Motors::set, new Limitless());
     Intake.UpMotor.setInverted(true);
     intake = new BasicSubsystem(SubsystemComponents.Intake.Motors::set, new Limitless());
     fork = new BasicSubsystem(SubsystemComponents.Fork.Motor::set, new Limitless());
     oi = new OI();
     drivetrain.setDefaultCommand(new DriveArcade(drivetrain,oi::getForwardDriver, oi::getRotationDriver));
-    camerashandler = new CamerasHandler(1280, 960, RobotMap.USB.FIRST_CAMERA, RobotMap.USB.SECOND_CAMERA);
+    camerashandler = new CamerasHandler(384, 216, RobotMap.USB.FIRST_CAMERA, RobotMap.USB.SECOND_CAMERA);
     camerashandler.setExposure(90);
 
   }

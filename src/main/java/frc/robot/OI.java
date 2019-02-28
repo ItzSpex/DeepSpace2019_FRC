@@ -23,7 +23,8 @@ public class OI {
     private XboXUID operator = new XboXUID(1);
     Button HandFButton;
     Button HandBButton;
-    Button HandSButton;
+    Button HandSBButton;
+    Button HandSFButton;
     Button Intake;
     Button Outtake;
     Button ForkClose;
@@ -37,12 +38,14 @@ public class OI {
     }
     void operatorButtons()
     {
-        HandFButton = operator.getGreenButton();
-        HandBButton = operator.getRedButton();
-        HandSButton = operator.getBlueButton();
+        HandBButton = operator.getGreenButton();
+        HandFButton = operator.getRedButton();
+        HandSBButton = operator.getBlueButton();
+        HandSFButton = operator.getYellowButton();
         HandFButton.whileHeld(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.FORWARD));
         HandBButton.whileHeld(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.BACKWARD));
-        HandSButton.toggleWhenPressed(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.STALL));
+        HandSBButton.toggleWhenPressed(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.STALL_BACKWARD));
+        HandSFButton.toggleWhenPressed(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.STALL_FORWARD));
         Intake = operator.getRBButton();
         Intake.whileHeld(new MoveBasicSubsystem(Robot.intake, SubsystemConstants.intake.INTAKE));
         Outtake = operator.getLBButton();
@@ -52,8 +55,8 @@ public class OI {
     {
         ForkClose = driver.getGreenButton();
         ForkOpen = driver.getRedButton();
-        ForkClose.whileHeld(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.CLOSE_SPEED));
-        ForkOpen.whileHeld(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.OPEN_SPEED));
+        ForkClose.toggleWhenPressed(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.CLOSE_SPEED));
+        ForkOpen.toggleWhenPressed(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.OPEN_SPEED));
         switchToFirst = driver.getBlueButton();
         switchToSecond = driver.getYellowButton();
         switchToFirst.whenPressed(new RunnableCommand(()->Robot.camerashandler.switchCamera(RobotMap.USB.FIRST_CAMERA)));
@@ -66,7 +69,7 @@ public class OI {
 
     public double getRotationDriver()
     {
-        return Math.pow(driver.getRightX(), 3);
+        return -Math.pow(driver.getRightX(), 3);
     }
 
 }

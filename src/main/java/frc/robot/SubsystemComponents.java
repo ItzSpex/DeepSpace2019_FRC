@@ -17,9 +17,11 @@ public class SubsystemComponents {
     }
     public static class Hand
     {
+        public static final SpeedController leftMotor = new WPI_TalonSRX(RobotMap.CAN.HAND_MOTOR1);
+        public static final SpeedController rightMotor = new WPI_TalonSRX(RobotMap.CAN.HAND_MOTOR2);
         public static final SpeedControllerGroup Motors = new SpeedControllerGroup(
-                new WPI_TalonSRX(RobotMap.CAN.HAND_MOTOR1)
-                , new WPI_TalonSRX(RobotMap.CAN.HAND_MOTOR2));
+                leftMotor
+                , rightMotor);
     }
 
     public static class Intake

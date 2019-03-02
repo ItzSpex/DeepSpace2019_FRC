@@ -12,6 +12,7 @@ import com.spikes2212.utils.RunnableCommand;
 import com.spikes2212.utils.XboXUID;
 
 import edu.wpi.first.wpilibj.buttons.Button;
+import frc.robot.commands.commandgroups.ForkStall;
 
 
 /**
@@ -59,7 +60,7 @@ public class OI {
         ForkStall = driver.getGreenButton();
         ForkClose.whileHeld(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.CLOSE_SPEED));
         ForkOpen.whileHeld(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.OPEN_SPEED));
-        ForkStall.toggleWhenPressed(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.STALL_SPEED));
+        ForkStall.toggleWhenPressed(new ForkStall());
         switchToFirst = driver.getBlueButton();
         switchToSecond = driver.getYellowButton();
         switchToFirst.whenPressed(new RunnableCommand(()->Robot.camerashandler.switchCamera(RobotMap.USB.FIRST_CAMERA)));

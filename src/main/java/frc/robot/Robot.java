@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.SubsystemComponents.Hand;
 import frc.robot.SubsystemComponents.Intake;
-import frc.robot.commands.commandgroups.Auto;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,7 +28,6 @@ public class Robot extends TimedRobot {
   public static BasicSubsystem fork;
   public static OI oi;
   public static CamerasHandler camerashandler;
-  Command autonomousCommand;
   @Override
   public void robotInit()
   {
@@ -62,9 +60,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    autonomousCommand = new Auto();
-    if (autonomousCommand != null)
-      autonomousCommand.start();
   }
 
   @Override
@@ -74,8 +69,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    if (autonomousCommand != null)
-      autonomousCommand.cancel();
   }
 
 

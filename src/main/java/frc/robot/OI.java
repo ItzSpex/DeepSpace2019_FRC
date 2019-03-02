@@ -29,6 +29,7 @@ public class OI {
     Button Outtake;
     Button ForkClose;
     Button ForkOpen;
+    Button ForkStall;
     Button switchToFirst;
     Button switchToSecond;
     public OI()
@@ -53,10 +54,12 @@ public class OI {
     }
     void driverButtons()
     {
-        ForkClose = driver.getGreenButton();
-        ForkOpen = driver.getRedButton();
-        ForkClose.toggleWhenPressed(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.CLOSE_SPEED));
-        ForkOpen.toggleWhenPressed(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.OPEN_SPEED));
+        ForkClose = driver.getLBButton();
+        ForkOpen = driver.getRBButton();
+        ForkStall = driver.getGreenButton();
+        ForkClose.whileHeld(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.CLOSE_SPEED));
+        ForkOpen.whileHeld(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.OPEN_SPEED));
+        ForkStall.toggleWhenPressed(new MoveBasicSubsystem(Robot.fork, SubsystemConstants.fork.STALL_SPEED));
         switchToFirst = driver.getBlueButton();
         switchToSecond = driver.getYellowButton();
         switchToFirst.whenPressed(new RunnableCommand(()->Robot.camerashandler.switchCamera(RobotMap.USB.FIRST_CAMERA)));

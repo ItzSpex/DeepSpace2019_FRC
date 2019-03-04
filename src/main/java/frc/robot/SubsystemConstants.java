@@ -16,7 +16,7 @@ public class SubsystemConstants {
 
     public interface fork
     {
-        public static final double OPEN_SPEED = 0.2;
+        public static final double OPEN_SPEED = 0.3;
         public static final double CLOSE_SPEED = -0.2;
         public static final double STALL_SPEED = -0.1;
     }

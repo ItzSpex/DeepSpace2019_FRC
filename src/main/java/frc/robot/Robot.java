@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
     drivetrain.setDefaultCommand(new DriveArcade(drivetrain,oi::getForwardDriver, oi::getRotationDriver));
     camerashandler = new CamerasHandler(384, 216, RobotMap.USB.FIRST_CAMERA, RobotMap.USB.SECOND_CAMERA);
-    camerashandler.setExposure(90);
+    camerashandler.setExposure(50);
 
   }
 

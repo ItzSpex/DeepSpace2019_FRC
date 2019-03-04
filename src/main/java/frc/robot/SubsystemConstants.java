@@ -10,14 +10,14 @@ public class SubsystemConstants {
     }
     public interface intake
     {
-        public static final double OUTTAKE = 1;
+        public static final double OUTTAKE = 0.8;
         public static final double INTAKE = -1;
     }
 
     public interface fork
     {
-        public static final double OPEN_SPEED = 0.4;
-        public static final double CLOSE_SPEED = -0.4;
+        public static final double OPEN_SPEED = 0.2;
+        public static final double CLOSE_SPEED = -0.2;
         public static final double STALL_SPEED = -0.1;
     }
 

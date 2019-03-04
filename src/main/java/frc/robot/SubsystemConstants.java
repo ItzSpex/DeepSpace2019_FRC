@@ -18,7 +18,7 @@ public class SubsystemConstants {
     {
         public static final double OPEN_SPEED = 0.3;
         public static final double CLOSE_SPEED = -0.2;
-        public static final double STALL_SPEED = -0.1;
+        public static final double STALL_SPEED = 0.15;
     }
 
 }

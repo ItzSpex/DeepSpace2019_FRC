@@ -2,6 +2,7 @@
 
 package frc.robot;
 import com.spikes2212.genericsubsystems.basicSubsystem.BasicSubsystem;
+import com.spikes2212.genericsubsystems.basicSubsystem.commands.MoveBasicSubsystem;
 import com.spikes2212.genericsubsystems.basicSubsystem.utils.limitationFunctions.Limitless;
 import com.spikes2212.genericsubsystems.drivetrains.TankDrivetrain;
 import com.spikes2212.genericsubsystems.drivetrains.commands.DriveArcade;
@@ -41,7 +42,7 @@ public class Robot extends TimedRobot {
     drivetrain.setDefaultCommand(new DriveArcade(drivetrain,oi::getForwardDriver, oi::getRotationDriver));
     camerashandler = new CamerasHandler(384, 216, RobotMap.USB.FIRST_CAMERA, RobotMap.USB.SECOND_CAMERA);
     camerashandler.setExposure(50);
-
+    hand.setDefaultCommand(new MoveBasicSubsystem(Robot.hand, oi::getHand));
   }
 
   @Override

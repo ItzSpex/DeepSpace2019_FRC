@@ -22,8 +22,6 @@ import frc.robot.commands.commandgroups.ForkStall;
 public class OI {
     private XboXUID driver = new XboXUID(0);
     private XboXUID operator = new XboXUID(1);
-    Button HandFButton;
-    Button HandBButton;
     Button HandSBButton;
     Button HandSFButton;
     Button Intake;
@@ -40,12 +38,9 @@ public class OI {
     }
     void operatorButtons()
     {
-        HandBButton = operator.getGreenButton();
-        HandFButton = operator.getRedButton();
+        
         HandSBButton = operator.getBlueButton();
         HandSFButton = operator.getYellowButton();
-        HandFButton.whileHeld(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.FORWARD));
-        HandBButton.whileHeld(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.BACKWARD));
         HandSBButton.toggleWhenPressed(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.STALL_BACKWARD));
         HandSFButton.toggleWhenPressed(new MoveBasicSubsystem(Robot.hand, SubsystemConstants.hand.STALL_FORWARD));
         Intake = operator.getRBButton();
@@ -73,8 +68,11 @@ public class OI {
 
     public double getRotationDriver()
     {
-        return -Math.pow(driver.getRightX(), 3);
+        return -Math.pow(driver.getRightX(), 5);
     }
-
+    public double getHand()
+    {
+        return operator.getLeftY();
+    }
 }
 

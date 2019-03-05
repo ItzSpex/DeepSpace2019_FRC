@@ -10,7 +10,7 @@ public class SubsystemConstants {
     }
     public interface intake
     {
-        public static final double OUTTAKE = 0.6;
+        public static final double OUTTAKE = 0.5;
         public static final double INTAKE = -0.6;
     }
 
